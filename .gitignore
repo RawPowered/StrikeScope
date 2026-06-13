@@ -1,0 +1,22 @@
+node_modules/
+dist/
+*.db
+*.db-wal
+*.db-shm
+server.config.json
+.env
+.env.local
+.env.*.local
+*.log
+
+# Runtime data — never commit tenant PII
+packages/server/data/uploads/
+packages/server/data/dev-snapshots/
+packages/server/data/*.db
+packages/server/certs/
+
+# IDE / OS
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store

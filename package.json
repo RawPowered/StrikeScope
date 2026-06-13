@@ -1,0 +1,34 @@
+{
+  "name": "strikescope",
+  "private": true,
+  "workspaces": ["shared", "packages/*"],
+  "scripts": {
+    "dev": "concurrently -n server,admin,installer,field,monitor -c blue,green,yellow,cyan,magenta \"npm run dev:server\" \"npm run dev:admin\" \"npm run dev:installer\" \"npm run dev:field\" \"npm run dev:monitor\"",
+    "dev:server": "npm run dev -w packages/server",
+    "dev:admin": "npm run dev -w packages/admin",
+    "dev:installer": "npm run dev -w packages/installer",
+    "dev:field": "npm run dev -w packages/field",
+    "dev:monitor": "npm run dev -w packages/monitor",
+    "build": "npm run build -w shared && npm run build -w packages/server && npm run build -w packages/admin && npm run build -w packages/installer && npm run build -w packages/field && npm run build -w packages/monitor",
+    "build:server": "npm run build -w packages/server",
+    "seed": "npm run seed -w packages/server",
+    "automations:up": "docker compose -f services/activepieces/docker-compose.yml --env-file services/activepieces/.env.example up -d",
+    "automations:down": "docker compose -f services/activepieces/docker-compose.yml down",
+    "automations:logs": "docker compose -f services/activepieces/docker-compose.yml logs -f activepieces",
+    "launch": "powershell -ExecutionPolicy Bypass -File launch.ps1",
+    "launcher": "Launcher.bat",
+    "lint": "npm run lint -w shared && npm run lint -w packages/admin && npm run lint -w packages/installer && npm run lint -w packages/field && npm run lint -w packages/monitor && npm run lint -w packages/server",
+    "typecheck": "npm run typecheck -w shared && npm run typecheck -w packages/admin && npm run typecheck -w packages/installer && npm run typecheck -w packages/field && npm run typecheck -w packages/monitor && npm run typecheck -w packages/server",
+    "test": "npm run test -w packages/server && npm run test -w packages/admin"
+  },
+  "overrides": {
+    "axios": "1.17.0",
+    "jsondiffpatch": "0.7.6",
+    "dompurify": "3.4.8",
+    "uuid": "11.1.1"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "typescript": "^5.7.0"
+  }
+}

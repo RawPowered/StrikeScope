@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SysMap project="StrikeScope CRM" updated="2026-06-10">
+  <Apps>
+    <App id="admin" path="packages/admin" role="Company CRM UI"/>
+    <App id="server" path="packages/server" role="Express API + SQLite"/>
+    <App id="shared" path="shared" role="Types + api-client"/>
+    <App id="installer" path="packages/installer" role="Field photo PWA"/>
+    <App id="monitor" path="packages/monitor" role="Submission feed"/>
+  </Apps>
+  <Features>
+    <Feature id="leads" owner="packages/admin/src/features/leads">
+      <Route>/company/leads</Route>
+      <Route>/company/leads/dnc</Route>
+      <Route>/company/leads/:id</Route>
+      <ServerRoute>/api/admin/leads</ServerRoute>
+    </Feature>
+    <Feature id="customers" owner="packages/admin/src/features/customers">
+      <Route>/company/customers</Route>
+      <Route>/company/customers/:id</Route>
+      <ServerRoute>/api/admin/customers</ServerRoute>
+      <ServerRoute>/api/admin/customers/:id/files</ServerRoute>
+      <ServerRoute>/api/admin/customers/:id/agreements</ServerRoute>
+      <UI path="packages/admin/src/features/customers/CustomerFiles.tsx" role="FormDialog + EmptyState"/>
+    </Feature>
+    <Feature id="agreements" owner="packages/admin/src/features/agreements">
+      <Route>/company/agreements</Route>
+      <Route>/company/agreements/:id</Route>
+      <UI path="packages/admin/src/features/agreements/AgreementsList.tsx"/>
+      <UI path="packages/admin/src/features/agreements/AgreementDetail.tsx"/>
+      <ServerRoute>/api/admin/agreements</ServerRoute>
+    </Feature>
+    <Feature id="contacts" owner="packages/admin/src/pages">
+      <Route>/company/contacts</Route>
+      <Route>/company/contacts/:id</Route>
+      <Route>/company/contacts/directory</Route>
+      <Route>/company/contacts/directory/:categorySlug</Route>
+      <Layout path="packages/admin/src/features/contacts/ContactsLayout.tsx"/>
+      <UI path="packages/admin/src/features/contacts/ContactDetail.tsx"/>
+      <ServerRoute>/api/admin/contacts</ServerRoute>
+      <ServerRoute>/api/admin/contacts/:id/photo-id</ServerRoute>
+    </Feature>
+    <Feature id="directory-contacts" owner="packages/admin/src/features/directory-contacts">
+      <Route>/company/contacts/directory</Route>
+      <Route>/company/contacts/directory/:categorySlug/:id</Route>
+      <UI path="packages/admin/src/features/directory-contacts/DirectoryContactDetail.tsx"/>
+      <AdminRoute>/company/admin/contact-categories</AdminRoute>
+      <ServerRoute>/api/admin/directory-contacts</ServerRoute>
+      <ServerRoute>/api/admin/directory-contacts/:id</ServerRoute>
+      <ServerRoute>/api/admin/directory-contacts/categories</ServerRoute>
+    </Feature>
+    <Feature id="record-detail" owner="packages/admin/src/components/record-detail">
+      <Plugin path="packages/admin/src/components/record-detail/DetailRow.tsx"/>
+      <Plugin path="packages/admin/src/components/record-detail/RecordDetailShell.tsx"/>
+      <Plugin path="packages/admin/src/components/record-detail/ActivityTimeline.tsx"/>
+      <Plugin path="packages/admin/src/components/record-detail/useRecordDetail.ts"/>
+    </Feature>
+    <Feature id="territory" owner="packages/admin/src/features/territory">
+      <AdminRoute>/company/admin/territory</AdminRoute>
+      <AdminRoute>/company/admin/jurisdiction-requests</AdminRoute>
+      <ServerRoute>/api/admin/territory</ServerRoute>
+      <ServerRoute>/api/admin/geo</ServerRoute>
+      <ServerRoute>/api/admin/geo/cascade</ServerRoute>
+      <ServerRoute>/api/admin/maps</ServerRoute>
+      <ServerRoute>/api/admin/maps/embed-url</ServerRoute>
+      <ServerRoute>/api/admin/test-workspace</ServerRoute>
+      <Plugin path="packages/server/src/plugins/test-workspace"/>
+      <ServerRoute>/ws/admin</ServerRoute>
+      <Plugin path="packages/server/src/admin-ws.ts"/>
+      <Plugin path="packages/admin/src/features/territory/location/useMapsClientConfig.ts"/>
+      <Plugin path="packages/admin/src/features/territory/location/useGeoCascade.ts"/>
+      <Plugin path="packages/server/src/plugins/geo-reference"/>
+      <Plugin path="packages/server/scripts/db-status.mjs" role="Fast readonly DB snapshot (no migrate)"/>
+      <Plugin path="packages/admin/src/features/territory/TerritoryTabs.tsx"/>
+      <Plugin path="packages/admin/src/features/territory/CityFilter.tsx"/>
+      <Plugin path="packages/admin/src/features/territory/useTerritoryFilters.ts" role="Gates state/city URL filters when territory inactive"/>
+      <Plugin path="packages/admin/src/lib/list-response.ts" role="asList paginated API normalizer"/>
+      <Plugin path="packages/admin/src/features/territory/LocationFields.tsx"/>
+      <Plugin path="packages/admin/src/features/territory/location/AddressAutocomplete.tsx"/>
+      <Plugin path="packages/admin/src/features/territory/location/MapPreview.tsx"/>
+      <Table>geo_zip_lookup</Table>
+      <Table>geo_counties</Table>
+      <Table>geo_cities</Table>
+      <Table>territory_jurisdiction_requests</Table>
+      <Table>territory_jurisdiction_custom</Table>
+    </Feature>
+    <Feature id="dnc" owner="packages/admin/src/features/leads">
+      <NestedIn>leads</NestedIn>
+      <ServerRoute>/api/admin/leads/dnc</ServerRoute>
+    </Feature>
+    <Feature id="projects" owner="packages/admin/src/pages">
+      <Route>/company/projects</Route>
+      <ServerRoute>/api/admin/projects</ServerRoute>
+      <Plugin path="packages/admin/src/features/financing/FinancingFields.tsx"/>
+    </Feature>
+    <Feature id="field-governance" owner="packages/admin/src/features/field-governance">
+      <AdminRoute>/company/admin/field-visibility</AdminRoute>
+      <ServerRoute>/api/admin/field-settings</ServerRoute>
+    </Feature>
+    <Feature id="properties" owner="packages/admin/src/features/properties">
+      <ServerRoute>/api/admin/customers/:customerId/properties</ServerRoute>
+      <UI path="packages/admin/src/features/properties/CustomerProperties.tsx"/>
+    </Feature>
+    <Feature id="duplicates" owner="packages/admin/src/features/duplicates">
+      <ServerRoute>/api/admin/duplicates</ServerRoute>
+      <Plugin path="packages/admin/src/features/duplicates/DuplicateWarningDialog.tsx"/>
+    </Feature>
+    <Feature id="assignments" owner="packages/admin/src/features/assignments">
+      <Plugin path="packages/admin/src/features/assignments/UserRolePicker.tsx"/>
+      <Table>project_assignments</Table>
+    </Feature>
+    <Feature id="project-progress" owner="packages/admin/src/features/projects">
+      <Plugin path="packages/admin/src/features/projects/ProjectProgressCard.tsx"/>
+      <ServerRoute>/api/admin/projects/:id/progress</ServerRoute>
+    </Feature>
+    <Feature id="field-time-tracking" owner="packages/field">
+      <App id="field" path="packages/field" role="Mobile field PWA"/>
+      <UI path="packages/field/src/pages/OverrideRequest.tsx"/>
+      <UI path="packages/admin/src/pages/ProjectDetail.tsx" note="worksite lat/lng, geofence, scheduled install"/>
+      <Route>/company/jobs/active</Route>
+      <AdminRoute>/company/admin/field-ops</AdminRoute>
+      <AdminRoute>/company/admin/field-overrides</AdminRoute>
+      <ServerRoute>/api/field</ServerRoute>
+      <ServerRoute>/api/admin/field</ServerRoute>
+      <ServerRoute>/api/admin/projects/active</ServerRoute>
+      <ServerRoute>/api/admin/projects/stale</ServerRoute>
+      <Plugin path="packages/server/src/plugins/time-tracking"/>
+      <Plugin path="packages/server/src/plugins/field-session"/>
+      <Plugin path="packages/server/src/plugins/project-stale"/>
+      <Plugin path="packages/server/src/plugins/active-jobs"/>
+      <Table>time_logs</Table>
+      <Table>job_field_sessions</Table>
+      <Table>field_override_requests</Table>
+    </Feature>
+    <Feature id="sales-dashboard" owner="packages/admin/src/features/sales">
+      <Route>/company/sales-projects</Route>
+      <UI path="packages/admin/src/features/sales/SalesProjectDashboard.tsx"/>
+    </Feature>
+    <Feature id="company-finance" owner="packages/admin/src/features/finance">
+      <Route>/company/finance</Route>
+      <ServerRoute>/api/admin/finance</ServerRoute>
+      <UI path="packages/admin/src/features/finance/CompanyFinance.tsx"/>
+      <Plugin path="packages/admin/src/features/finance/FormulaBuilder.tsx"/>
+      <Plugin path="packages/admin/src/features/finance/ProjectFinanceTab.tsx"/>
+    </Feature>
+    <Feature id="financing-banks" owner="packages/admin/src/features/financing">
+      <AdminRoute>/company/admin/banks</AdminRoute>
+      <ServerRoute>/api/admin/banks</ServerRoute>
+      <UI path="packages/admin/src/features/financing/BankNames.tsx"/>
+    </Feature>
+    <Feature id="automations" owner="packages/admin/src/features/automations">
+      <AdminRoute>/company/admin/automations</AdminRoute>
+      <ServerRoute>/api/admin/automations</ServerRoute>
+      <Infra path="services/activepieces" role="Activepieces Docker sidecar :8080"/>
+      <Plugin path="packages/server/src/plugins/automations" role="Event bridge, embed JWT, service keys, templates"/>
+      <Plugin path="packages/server/src/routes/admin-automations.ts"/>
+      <Plugin path="packages/activepieces-piece-strikescope" role="Activepieces CRM piece (triggers + actions)"/>
+      <UI path="packages/admin/src/features/automations/AutomationsPage.tsx"/>
+      <UI path="packages/admin/src/features/automations/AutomationSetupPanel.tsx"/>
+      <UI path="packages/admin/src/features/automations/AutomationTemplatesPanel.tsx"/>
+      <Table>automation_projects</Table>
+      <Table>automation_service_keys</Table>
+      <Table>automation_webhook_subscriptions</Table>
+      <Table>automation_event_log</Table>
+    </Feature>
+    <Feature id="admin-settings" owner="packages/admin/src/pages">
+      <Route>/company/admin/*</Route>
+    </Feature>
+    <Feature id="server-admin" owner="packages/admin/src/pages">
+      <Route>/server/*</Route>
+    </Feature>
+    <Feature id="dev-studio" owner="packages/admin/src/features/dev-studio">
+      <Route>/server/dev-studio</Route>
+      <ServerRoute>/api/admin/dev-studio</ServerRoute>
+      <Plugin path="packages/server/src/plugins/dev-agent" role="Ollama agent, workspace, snapshots, SQL tools, tool-parse, preflight"/>
+      <Plugin path="packages/server/src/plugins/dev-agent/deploy" role="Module build, ship, rollback, restart queue"/>
+      <Script path="scripts/dev-studio-ship.ps1" role="Detached multi-port build and restart"/>
+      <Plugin path="packages/server/src/plugins/dev-agent/platform-knowledge" role="RAG indexer, embeddings, golden examples"/>
+      <Plugin path="packages/server/src/routes/admin-dev-studio.ts"/>
+      <UI path="packages/admin/src/features/dev-studio/DevStudioPage.tsx"/>
+      <Table>schema_migrations</Table>
+    </Feature>
+    <Feature id="auth-session" owner="packages/admin/src/auth.tsx">
+      <ServerRoute>/api/auth/login</ServerRoute>
+      <ServerRoute>/api/auth/me</ServerRoute>
+      <ServerRoute>/api/auth/switch-company</ServerRoute>
+      <Plugin path="packages/server/src/auth.ts" role="JWT middleware + dev fallback company"/>
+    </Feature>
+    <Feature id="customer-portal" owner="packages/admin/src/pages">
+      <Route>/customer/*</Route>
+      <Layout path="packages/admin/src/components/CustomerLayout.tsx"/>
+      <ServerRoute>/api/auth/me</ServerRoute>
+      <ServerRoute>/api/admin/projects/:id</ServerRoute>
+    </Feature>
+  </Features>
+  <Tooling>
+    <Config path="eslint.config.cjs" role="ESLint 9 flat config (root)"/>
+    <Plugin path="Launcher.bat" role="GUI launcher: deps, full build, server :3001, Server Admin"/>
+    <Plugin path="launcher.ps1" role="Launcher GUI orchestration"/>
+    <Plugin path="scripts/launch-bootstrap.ps1" role="Prerequisites, npm install, workspace builds, DB check"/>
+    <Plugin path="launch.ps1" role="Console dev launch"/>
+  </Tooling>
+  <Layout>
+    <Shell path="packages/admin/src/layout/AppShell.tsx"/>
+    <SectionTabs path="packages/admin/src/layout/SectionTabs.tsx"/>
+    <PageHeader path="packages/admin/src/layout/PageHeader.tsx"/>
+    <EmptyState path="packages/admin/src/components/EmptyState.tsx" uses="LoadingState, EmptyState, auth ProtectedRoute"/>
+    <ViewToggle path="packages/admin/src/components/ViewToggle.tsx" uses="FormDialog"/>
+    <DataTable path="packages/admin/src/components/data-table/DataTable.tsx" uses="Skeleton loading"/>
+  </Layout>
+  <Docs updated="2026-06-13">
+    <File path="README.md" role="GitHub landing — IAM positioning"/>
+    <File path="docs/ARCHITECTURE.md" role="Platform architecture"/>
+    <File path="docs/SECURITY-IAM.md" role="RBAC, MFA, PII, audit model"/>
+    <File path="docs/ROADMAP-SENTINEL.md" role="WIP local AI SIEM/SOAR vision"/>
+    <File path="SECURITY.md" role="Vulnerability reporting and prod checklist"/>
+  </Docs>
+</SysMap>

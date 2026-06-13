@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VarMap project="StrikeScope CRM" updated="2026-06-10">
+  <Auth>
+    <Var name="user" source="auth.tsx" scope="session"/>
+    <Var name="activeCompanyId" source="auth.tsx" scope="localStorage" key="activeCompanyId" alias="user.companyId"/>
+    <Var name="permissions" source="auth.tsx" scope="session" alias="user.permissions"/>
+    <Var name="customerProjectId" source="GET /api/auth/me" scope="customer-session" usedBy="CustomerDashboard.tsx"/>
+  </Auth>
+  <UI>
+    <Var name="sidebarCollapsed" source="AppShell.tsx" scope="local"/>
+    <Var name="columnPreferences" source="ColumnPicker.tsx" scope="user-persisted" api="/api/admin/column-preferences"/>
+    <Var name="territoryFilters" source="useTerritoryFilters.ts" scope="url" fields="state,city" gatedBy="territoryActive"/>
+    <Var name="territoryActive" source="useTerritoryFilters.ts" scope="derived" rule="enabledStates.length &amp;&amp; splitByState"/>
+    <Var name="asList" source="list-response.ts" scope="util" usedBy="LeadKanban.tsx"/>
+    <Var name="withCfSelect" source="helpers.ts" scope="server" usedBy="admin-leads,admin-contacts,admin-customers,admin-projects"/>
+    <Var name="useRecordDetail" source="useRecordDetail.ts" scope="hook" pattern="['record-detail', fetchPath]"/>
+  </UI>
+  <QueryKeys>
+    <Var name="recordDetail" pattern="['record-detail', fetchPath]"/>
+    <Var name="contactDetail" pattern="['record-detail', '/api/admin/contacts/:id']"/>
+    <Var name="directoryContactDetail" pattern="['record-detail', '/api/admin/directory-contacts/:id']"/>
+    <Var name="agreementDetail" pattern="['record-detail', '/api/admin/agreements/:id']"/>
+    <Var name="leads" pattern="['leads', queryString]"/>
+    <Var name="leadsDnc" pattern="['leads', 'dnc']"/>
+    <Var name="customers" pattern="['customers', filters]"/>
+    <Var name="customerDetail" pattern="['customers', id]"/>
+    <Var name="customerFiles" pattern="['customers', id, 'files']"/>
+    <Var name="customerAgreements" pattern="['customers', id, 'agreements']"/>
+    <Var name="agreements" pattern="['agreements', queryString]"/>
+    <Var name="contacts" pattern="['contacts', queryString, customerId]"/>
+    <Var name="directoryContacts" pattern="['directoryContacts', categorySlug]"/>
+    <Var name="contactCategories" pattern="['contactCategories']"/>
+    <Var name="banks" pattern="['banks']"/>
+    <Var name="fieldSettings" pattern="['field-settings', entity]"/>
+    <Var name="properties" pattern="['properties', customerId]"/>
+    <Var name="projectCosts" pattern="['project-costs', projectId]"/>
+    <Var name="companyFinance" pattern="['company-finance']"/>
+    <Var name="commissionReports" pattern="['commission-reports']"/>
+    <Var name="salesProjects" pattern="['sales-projects']"/>
+    <Var name="activeJobs" pattern="['active-jobs']"/>
+    <Var name="fieldOpenShifts" pattern="['field-open-shifts']"/>
+    <Var name="fieldStale" pattern="['field-stale']"/>
+    <Var name="fieldOverrides" pattern="['field-overrides']"/>
+    <Var name="projectsStale" pattern="['projects-stale']"/>
+    <Var name="territory" pattern="['territory']"/>
+    <Var name="territoryCities" pattern="['territory', 'cities', state]"/>
+    <Var name="geoCounties" pattern="['geo', 'counties', state]"/>
+    <Var name="geoCities" pattern="['geo', 'cities', state, county]"/>
+    <Var name="geoCascade" pattern="['geo', 'cascade', state, county, zip]"/>
+    <Var name="mapsClientConfig" pattern="['maps-client-config']"/>
+    <Var name="mapsEmbedUrl" pattern="['maps-embed-url', address]"/>
+    <Var name="jurisdictionRequests" pattern="['jurisdiction-requests']"/>
+    <Var name="submissions" pattern="['submissions', filter]"/>
+    <Var name="projects" pattern="['projects', queryString]"/>
+    <Var name="audit" pattern="['audit', applied]"/>
+    <Var name="leadStages" pattern="['lead-stages']"/>
+    <Var name="connections" pattern="['connections']"/>
+    <Var name="automationsStatus" pattern="['automations-status']"/>
+    <Var name="automationsWebhooks" pattern="['automations-webhooks']"/>
+    <Var name="automationsTemplates" pattern="['automations-templates']"/>
+    <Var name="guide" pattern="['guide']"/>
+    <Var name="customFields" pattern="['custom-fields', module]"/>
+    <Var name="domains" pattern="['domains']"/>
+    <Var name="taskTemplates" pattern="['task-templates']"/>
+    <Var name="deletedCompanies" pattern="['deleted-companies']"/>
+    <Var name="devStudioStatus" pattern="['dev-studio', 'status']"/>
+    <Var name="devStudioSnapshots" pattern="['dev-studio', 'snapshots']"/>
+    <Var name="devStudioKnowledge" pattern="['dev-studio', 'knowledge']"/>
+  </QueryKeys>
+  <DevStudio>
+    <Var name="devStudio.ollamaHost" source="dev-agent/config.ts" scope="server" default="http://127.0.0.1:11434"/>
+    <Var name="devStudio.defaultModel" source="dev-agent/config.ts" scope="server" default="qwen2.5-coder:7b"/>
+    <Var name="devStudio.platformModel" source="dev-agent/config.ts" scope="server" default="strikescope-dev"/>
+    <Var name="devStudio.selectedModel" source="dev-agent/config.ts" scope="server"/>
+    <Var name="devStudio.embedModel" source="dev-agent/config.ts" scope="server" default="nomic-embed-text"/>
+    <Var name="devStudio.workspaceRoot" source="dev-agent/config.ts" scope="server"/>
+    <Var name="devStudio.knowledgeAutoSync" source="dev-agent/config.ts" scope="server" default="true"/>
+    <Var name="devStudio.learnFromApprovals" source="dev-agent/config.ts" scope="server" default="true"/>
+    <Var name="devStudio.contextWindow" source="dev-agent/config.ts" scope="server" default="16384"/>
+    <Var name="devStudio.historyLimit" source="dev-agent/config.ts" scope="server" default="4"/>
+    <Var name="devStudio.chatSettings" source="dev-studio/chat-storage.ts" scope="localStorage" key="strikescope-dev-studio-settings"/>
+    <Var name="devStudio.chatMessages" source="dev-studio/chat-storage.ts" scope="localStorage" key="strikescope-dev-studio-chat"/>
+    <Var name="devStudio.lastDeploy" source="dev-agent/deploy/ship-state.ts" scope="server" path="packages/server/data/dev-agent/last-deploy.json"/>
+    <Var name="devStudio.shipManifest" source="dev-agent/deploy/ship-state.ts" scope="server" path="packages/server/data/dev-agent/ship-manifest.json"/>
+    <Var name="devStudio.lastSnapshotId" source="dev-agent/deploy/ship-state.ts" scope="server" field="snapshotId"/>
+    <Var name="devStudio.shipPhase" source="dev-studio/ShipPanel.tsx" scope="ui"/>
+  </DevStudio>
+  <Automations>
+    <Var name="ACTIVEPIECES_URL" source="plugins/automations/config.ts" scope="server" default="http://localhost:8080"/>
+    <Var name="ACTIVEPIECES_SIGNING_KEY" source="plugins/automations/config.ts" scope="server" env="ACTIVEPIECES_SIGNING_KEY"/>
+    <Var name="ACTIVEPIECES_SIGNING_KEY_ID" source="plugins/automations/config.ts" scope="server" env="ACTIVEPIECES_SIGNING_KEY_ID"/>
+    <Var name="ACTIVEPIECES_PLATFORM_ADMIN_TOKEN" source="plugins/automations/config.ts" scope="server" env="ACTIVEPIECES_PLATFORM_ADMIN_TOKEN"/>
+    <Var name="VITE_ACTIVEPIECES_URL" source="admin vite" scope="client" default="http://localhost:8080"/>
+    <Var name="automationServiceKey" source="automation_service_keys" scope="company" prefix="ssap_"/>
+    <Var name="externalProjectId" source="project-map.ts" scope="derived" pattern="company:{companyId}|platform:templates"/>
+  </Automations>
+  <Fields>
+    <Var name="coSignerContactId" entities="customers,projects" api="co_signer_contact_id"/>
+    <Var name="contactType" entity="contacts" api="contact_type"/>
+    <Var name="photoId" entity="contacts" api="photo_id_storage_key"/>
+    <Var name="permitNumber" entity="projects" api="permit_number"/>
+    <Var name="propertyLegalDescription" entity="projects" api="property_legal_description"/>
+    <Var name="countyDepartment" entity="projects" api="county_department"/>
+    <Var name="requiresPermit" entity="project_types" api="requires_permit"/>
+    <Var name="includeFinancingFields" entity="project_types" api="include_financing_fields"/>
+    <Var name="financingType" entity="projects" api="financing_type"/>
+    <Var name="bankId" entity="projects" api="bank_id"/>
+    <Var name="territoryConfig" entity="companies" api="territory_json"/>
+    <Var name="mapsConfig" entity="companies" api="territory_json.maps" fields="apiKey,enableAddressAutocomplete,enableDirections,enableMapEmbed"/>
+    <Var name="fieldPolicy" entity="companies" api="field_policy_json"/>
+    <Var name="worksiteLat" entity="projects" api="worksite_lat"/>
+    <Var name="worksiteLng" entity="projects" api="worksite_lng"/>
+    <Var name="scheduledInstallAt" entity="projects" api="scheduled_install_at"/>
+    <Var name="actionToken" source="field/Capture.tsx" scope="sessionStorage" key="field_action_token"/>
+    <Var name="fieldJwt" source="field/api.ts" scope="localStorage" key="field_jwt"/>
+  </Fields>
+  <Repo>
+    <Var name="GITHUB_REPO" value="https://github.com/GatoGodMode/StrikeScope" usedIn="README.md" purpose="Public repository"/>
+    <Var name="SECURITY_IAM_DOC" value="docs/SECURITY-IAM.md" usedIn="README.md" purpose="IAM documentation"/>
+    <Var name="SENTINEL_ROADMAP_DOC" value="docs/ROADMAP-SENTINEL.md" usedIn="README.md" purpose="Sentinel WIP roadmap"/>
+  </Repo>
+</VarMap>
