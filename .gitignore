@@ -8,6 +8,9 @@ server.config.json
 .env.local
 .env.*.local
 *.log
+server.err
+server_error.txt
+server_output.txt
 
 # Runtime data — never commit tenant PII
 packages/server/data/uploads/
