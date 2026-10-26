@@ -7,7 +7,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![IAM](https://img.shields.io/badge/IAM-Entity%20%2B%20Field%20RBAC-6f42c1)](docs/SECURITY-IAM.md)
 
-**Author:** [Joseph Edwards (@GatoGodMode)](https://github.com/GatoGodMode)
+**Author:** [Joseph Edwards (@RawPowered)](https://github.com/RawPowered)
 
 StrikeScope is a **self-maintainable, self-hosted** business platform: one Express server, SQLite tenancy, multiple client apps, optional Activepieces orchestration, and a Dev Studio AI that observes schema and code structure. Built to demonstrate **IAM depth** (entity + column-level permissions, MFA, audit) and a credible path toward **local AI SIEM/SOAR** — documented honestly as [roadmap, not shipped](docs/ROADMAP-SENTINEL.md).
 
@@ -112,7 +112,7 @@ Configured in **Admin → Roles & Permissions**; enforced in [`packages/server/s
 **Requirements:** Node.js 20+, npm 9+
 
 ```bash
-git clone https://github.com/GatoGodMode/StrikeScope.git
+git clone https://github.com/RawPowered/StrikeScope.git
 cd StrikeScope
 npm install
 cp .env.example .env
@@ -188,4 +188,4 @@ npm run automations:up
 
 MIT — see [LICENSE](LICENSE).
 
-**Related:** [GatoGodMode profile](https://github.com/GatoGodMode) · [OrphanHunter](https://github.com/GatoGodMode/OrphanHunter) · [CollectorBuyerPsych](https://github.com/GatoGodMode/CollectorBuyerPsych)
+**Related:** [RawPowered profile](https://github.com/RawPowered) · [OrphanHunter](https://github.com/RawPowered/OrphanHunter) · [CollectorBuyerPsych](https://github.com/RawPowered/CollectorBuyerPsych)
