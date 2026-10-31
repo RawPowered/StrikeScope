@@ -1,6 +1,6 @@
 # StrikeScope
 
-**Self-hosted multi-tenant CRM with enterprise IAM — RBAC, field-level PII, MFA, audit trail, and AI-assisted platform engineering.**
+**Self-hosted multi-tenant CRM with enterprise IAM; RBAC, field-level PII, MFA, audit trail, and AI-assisted platform engineering.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Node 20](https://img.shields.io/badge/node-20+-339933?logo=nodedotjs&logoColor=white)](https://nodejs.org/)
@@ -9,7 +9,7 @@
 
 **Author:** [Joseph Edwards (@RawPowered)](https://github.com/RawPowered)
 
-StrikeScope is a **self-maintainable, self-hosted** business platform: one Express server, SQLite tenancy, multiple client apps, optional Activepieces orchestration, and a Dev Studio AI that observes schema and code structure. Built to demonstrate **IAM depth** (entity + column-level permissions, MFA, audit) and a credible path toward **local AI SIEM/SOAR** — documented honestly as [roadmap, not shipped](docs/ROADMAP-SENTINEL.md).
+StrikeScope is a **self-maintainable, self-hosted** business platform: one Express server, SQLite tenancy, multiple client apps, optional Activepieces orchestration, and a Dev Studio AI that observes schema and code structure. Built to demonstrate **IAM depth** (entity + column-level permissions, MFA, audit) and a credible path toward **local AI SIEM/SOAR**: documented honestly as [roadmap, not shipped](docs/ROADMAP-SENTINEL.md).
 
 ---
 
@@ -27,7 +27,7 @@ StrikeScope is a **self-maintainable, self-hosted** business platform: one Expre
 | **AI schema observer** | Dev Studio RAG + SQL console over platform knowledge |
 | **Orchestration layer** | Activepieces events + custom StrikeScope piece |
 
-**In progress:** [Sentinel](docs/ROADMAP-SENTINEL.md) — local AI SIEM/SOAR with company-maintained playbooks.
+**In progress:** [Sentinel](docs/ROADMAP-SENTINEL.md); local AI SIEM/SOAR with company-maintained playbooks.
 
 Full IAM model: **[docs/SECURITY-IAM.md](docs/SECURITY-IAM.md)**
 
@@ -86,24 +86,24 @@ Details: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
 
 | Entity | Field | Purpose |
 |--------|-------|---------|
-| Contacts | `ssn_last_four` | SSN last four — credit/identity |
+| Contacts | `ssn_last_four` | SSN last four; credit/identity |
 | Contacts | `date_of_birth` | DOB verification |
 | Leads | `co_signer_*` | Co-signer contact info |
 
-Configured in **Admin → Roles & Permissions**; enforced in [`packages/server/src/auth.ts`](packages/server/src/auth.ts) and [`field-permissions.ts`](packages/server/src/field-permissions.ts).
+Configured in **Admin → Roles & Permissions**: enforced in [`packages/server/src/auth.ts`](packages/server/src/auth.ts) and [`field-permissions.ts`](packages/server/src/field-permissions.ts).
 
 ---
 
 ## Platform features
 
-- **Server Admin** — companies, users, domains, project types, Dev Studio
-- **CRM** — leads pipeline, customers, contacts, agreements, projects, forms builder
-- **Field ops** — geofenced clock-in, photo submissions, foreman workflows
-- **Finance** — commission formulas, payout evaluation
-- **Territory / geo** — jurisdiction tracking, maps integration
-- **Automations** — Activepieces embed + CRM event emitter
-- **Dev Studio** — local AI agent: migrations, code patches, ship/rollback (dev mode)
-- **Distribution** — Windows launcher, `npm run dev`, production build serves admin from server
+- **Server Admin**: companies, users, domains, project types, Dev Studio
+- **CRM**: leads pipeline, customers, contacts, agreements, projects, forms builder
+- **Field ops**: geofenced clock-in, photo submissions, foreman workflows
+- **Finance**: commission formulas, payout evaluation
+- **Territory / geo**: jurisdiction tracking, maps integration
+- **Automations**: Activepieces embed + CRM event emitter
+- **Dev Studio**: local AI agent: migrations, code patches, ship/rollback (dev mode)
+- **Distribution**: Windows launcher, `npm run dev`, production build serves admin from server
 
 ---
 
@@ -149,7 +149,7 @@ StrikeScope is evolving toward a **local AI security sentinel**:
 3. Correlation without third-party cloud SIEM
 4. Ollama-assisted incident summaries
 
-See **[docs/ROADMAP-SENTINEL.md](docs/ROADMAP-SENTINEL.md)** — no fake SIEM UI in this repo.
+See **[docs/ROADMAP-SENTINEL.md](docs/ROADMAP-SENTINEL.md)**: no fake SIEM UI in this repo.
 
 ---
 
@@ -186,6 +186,6 @@ npm run automations:up
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT; see [LICENSE](LICENSE).
 
 **Related:** [RawPowered profile](https://github.com/RawPowered) · [OrphanHunter](https://github.com/RawPowered/OrphanHunter) · [CollectorBuyerPsych](https://github.com/RawPowered/CollectorBuyerPsych)
